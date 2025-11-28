@@ -16,7 +16,7 @@ public class LoteriaPrimitiva {
              * Genero un números aleatorios del 1 al 49
              * y los almaceno en el array
              */
-            combinacionNumeros[inicio] = aleatorio.nextInt(49);
+            combinacionNumeros[inicio] = aleatorio.nextInt(48)+1;
             System.out.print(combinacionNumeros[inicio] + ", ");
         }
         System.out.println();
@@ -36,7 +36,7 @@ public class LoteriaPrimitiva {
              * Genero un números aleatorios del 1 al 49
              * y los almaceno en el array
              */
-            numerosApuestas[inicio] = aleatorio.nextInt(49); //guardo los valores aleatorios
+            numerosApuestas[inicio] = aleatorio.nextInt(48)+1; //guardo los valores aleatorios
             System.out.print(numerosApuestas[inicio] + ", ");
         }
         System.out.println();
@@ -65,6 +65,8 @@ public class LoteriaPrimitiva {
          * invoco al metodo acertos pasando por parametro los array
          */
         System.out.println("Ha habido " + Aciertos(numerosApuestas,combinacionNumeros) + " aciertos.");
+
+        System.out.println("Ha habido " + otraAciertos(numerosApuestas,combinacionNumeros) + " aciertos.");
     }
 
     /**
@@ -90,4 +92,15 @@ public class LoteriaPrimitiva {
          */
         return aciertos;
     }
+
+    public static int otraAciertos(int[] numerosApuestas, int[] combinacionNumeros){
+        int aciertos = 0;
+        for (int i : numerosApuestas){
+            if(Arrays.binarySearch(combinacionNumeros, i) >= 0){ //Array.binarySearch devuelve la posicion en la que se encuentra si esta
+                aciertos ++;
+            }
+        }
+        return aciertos;
+    }
+
 }
